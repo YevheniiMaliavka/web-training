@@ -1,0 +1,18 @@
+.slider{
+    width: 860px;
+    margin: auto;
+    text-align: center;
+}
+
+.slider-images img{
+    width: 100%;
+    display: none;
+}
+
+.slider-images img:first-child{
+    display: block;
+}
+
+.slider-controls{
+    margin-top: 10px;
+}
