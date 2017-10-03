@@ -1,0 +1,42 @@
+.slider{
+    width: 860px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.slider-images {
+    position: relative;  
+    height: 580px;
+}
+
+.slider-images img{
+    width: 100%;
+    position: absolute;
+    left: 0;  
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+.slider-images img.showed{
+    opacity: 1;
+}
+
+.slider-controls{
+    margin-top: 10px;
+}
+
+.slider-controls input[type="button"]{
+    border:none;
+    color: white;
+    background-color: mediumslateblue;
+    font-size: 16px;
+    display:inline-block;
+    text-align: center;
+    padding: 15px 32px;
+    transition: background-color 1s;
+}
+
+.slider-controls input[type="button"]:hover{
+    color: mediumslateblue;
+    background-color:antiquewhite;
+}
