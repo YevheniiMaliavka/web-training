@@ -1,0 +1,25 @@
+html{
+    height: 100%;
+}
+
+body{
+    background-color:whitesmoke;
+    border: 10px dotted;
+    border-bottom-color: deeppink;
+    border-top-color:blueviolet;
+    border-left-color:magenta;
+    border-right-color: hotpink;
+    border-radius: 5px;
+    height: 95%;
+}
+
+.greeting{
+    text-align: center;
+    margin: 0 auto;
+}
+
+.greeting h1{
+  font: 400 130px/0.8 'Great Vibes', Helvetica, sans-serif;
+  color:crimson;
+  text-shadow: 4px 4px 3px rgba(0,0,0,0.1); 
+}
