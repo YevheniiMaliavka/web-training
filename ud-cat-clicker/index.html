@@ -1,0 +1,42 @@
+<!DOCTYME html>
+<html>
+    <head>
+        <title>
+            Cat Clicker
+        </title>
+    </head>
+    <body>
+        <div class="cat-container">
+            <image class="cat-image" src="cat.png" alt="Cat says meow">
+            <span class="cat-counter">0</span>
+        </div>
+    </body>
+</html>
+
+<script>
+    const imageElem = document.querySelector('.cat-image');
+    const counterElem = document.querySelector('.cat-counter');
+    let counter = 0;
+    imageElem.addEventListener('click', () => {
+        counter++;
+        counterElem.innerHTML = counter;
+    });
+</script>
+
+<style>
+    .cat-container{
+        margin: 0 auto;
+        margin-top: 100px;
+        height: 400px;
+        text-align: center;
+    }
+
+    .cat-image{
+        height: 50%;
+    }
+
+    .cat-counter{
+        font-size: 40px;
+        font-family: "Courier New"
+    }
+</style>
