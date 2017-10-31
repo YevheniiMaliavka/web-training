@@ -1,0 +1,49 @@
+
+.container{
+    height: 540px;
+    font-family: "Courier New";
+}
+
+.container-form{
+    text-align: center;
+}
+
+.form-input{
+    width:50%;
+    height: 30px;
+    font-size: 40px;
+    font-family: "Courier New";
+}
+
+.container-notes{
+    margin-top: 10px;
+    border: 2px solid hotpink;
+    height: 90%;
+    padding: 5px;
+    border-radius: 50px;
+}
+
+.note-card{
+    margin: 5px;
+    display: inline-block;
+    height: 120px;
+    border: 1px solid pink;
+    border-radius: 50px;
+    text-align: center;
+    line-height: 100px;
+}
+
+.card-title{
+    font-size: 16px;
+    display: block;
+    height: 15px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.card-details{
+    font-size: 9px;
+    display: inline;
+    margin-left: 10px;
+    margin-right: 10px;
+}
