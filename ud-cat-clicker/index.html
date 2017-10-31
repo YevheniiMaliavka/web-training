@@ -4,56 +4,13 @@
         <title>
             Cat Clicker
         </title>
+        <link rel="stylesheet" type="text/css" href="styles.css">
+        <script type="text/javascript" src="index.js" defer></script>
     </head>
     <body>
-        <div class="cats-container"></div>
+        <div class="container">
+            <div class="cats-list-container"></div>
+            <div class="cat-container"></div>
+        </div>
     </body>
 </html>
-
-<script>
-    function getCatDiv(cat){
-        const div = document.createElement('div');
-        div.className = "cat-container";
-        const nameDiv = document.createElement('span');
-        nameDiv.innerHTML = cat.name + ': ';
-        div.appendChild(nameDiv);
-        const counterDiv = document.createElement('span');
-        counterDiv.innerHTML = cat.counter;
-        div.appendChild(counterDiv);
-        const image = document.createElement('img');
-        image.src = cat.image;
-        image.className = 'cat-image';
-        image.addEventListener('click', () => {
-            cat.counter++;
-            counterDiv.innerHTML = cat.counter;
-        });
-        div.appendChild(image);
-        return div
-    }
-
-    const cats = [ { name: 'Mauzi', image: 'cat.png',counter: 0 }, 
-                   { name: 'Mew', image: 'mew.jpg', counter: 0 }];
-
-    const container = document.querySelector('.cats-container');
-    cats.map(getCatDiv).map(div => container.appendChild(div));
-</script>
-
-<style>
-    .cats-container{
-        margin: 0 auto;
-        margin-top: 100px;
-        height: 400px;
-        text-align: center;
-        font-size: 40px;
-        font-family: "Courier New"
-    }
-
-    .cat-container{
-        float: left;
-        width: 40%;
-    }
-
-    .cat-image{
-        height: 50%;
-    }
-</style>

@@ -1,0 +1,44 @@
+.container{
+    text-align: center;
+    font-family: "Courier New"
+}
+
+.cats-list-container{
+    display: inline-block;
+    width: 150px;
+    border: 1px solid seagreen;
+    text-align: center;
+    font-size: 20px;
+    margin-right: 100px;
+}
+
+.cat-list-item{
+    border: 1px solid mediumaquamarine;
+    margin: 5px;
+    transition: background-color 0.5s, color 0.5s;
+    
+}
+
+.cat-list-item:hover{
+    background-color: lightseagreen;
+    color: white;
+}
+
+.selected{
+    background-color: seagreen;
+    color: white;
+}
+
+.cat-container{
+    margin: 0 auto;
+    margin-top: 100px;
+    display:inline-block;
+    height: 400px;
+    width: 400px;
+    text-align: center;
+    font-size: 20px;
+}
+
+.cat-image{
+    height: 50%;
+}
