@@ -1,0 +1,24 @@
+{
+  "name": "e2e-selenium",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "serve": "webpack-dev-server --contentBase dist/ --contentBase",
+    "build": "webpack",
+    "test": "mocha"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "chromedriver": "^2.33.2",
+    "html-webpack-plugin": "^2.30.1",
+    "mocha": "^4.0.1",
+    "selenium-webdriver": "^3.6.0",
+    "webpack": "^3.8.1",
+    "webpack-dev-server": "^2.9.4"
+  }
+}
