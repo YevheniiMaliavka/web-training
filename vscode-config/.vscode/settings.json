@@ -6,6 +6,7 @@
     "**/node_modules": true,
     "**/dist": true
   },
+  "explorer.openEditors.visible": 0,
   "files.exclude": {
     "**/.git": true
   },
