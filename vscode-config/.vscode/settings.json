@@ -11,5 +11,6 @@
     "**/.git": true
   },
   "files.trimTrailingWhitespace": true,
-  "tslint.autoFixOnSave": true
+  "tslint.autoFixOnSave": true,
+  "prettier.singleQuote": true
 }
