@@ -4,15 +4,22 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "tsc && node dist/index.js",
-    "dev": "nodemon -e ts --exec npm run build"
+    "build": "tsc",
+    "start": "npm run build && node dist/index.js",
+    "dev": "nodemon -e ts --exec npm run build",
+    "package":
+      "npm run build && zip -q -r lambda-package.zip node_modules/ dist/lambda.js dist/App.js"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/aws-serverless-express": "^2.1.2",
     "@types/express": "^4.0.39",
-    "express": "^4.16.2",
     "nodemon": "^1.12.1",
     "typescript": "^2.6.1"
+  },
+  "dependencies": {
+    "aws-serverless-express": "^3.0.2",
+    "express": "^4.16.2"
   }
 }

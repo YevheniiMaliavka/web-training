@@ -11,7 +11,7 @@ class App {
   private initRoutes(): void {
     const router = express.Router();
     router.get('/', (req, res) => {
-      res.json('Hello, World!');
+      res.json('Hello, World! This is Express.js App!');
     });
     this.express.use('/', router);
   }
