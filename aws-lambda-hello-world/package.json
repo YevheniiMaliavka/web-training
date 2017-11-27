@@ -13,12 +13,12 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/aws-serverless-express": "^2.1.2",
-    "@types/express": "^4.0.39",
     "nodemon": "^1.12.1",
     "typescript": "^2.6.1"
   },
   "dependencies": {
+    "@types/aws-serverless-express": "^2.1.2",
+    "@types/express": "^4.0.39",
     "aws-serverless-express": "^3.0.2",
     "express": "^4.16.2"
   }

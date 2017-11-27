@@ -1,7 +1,14 @@
-import { app } from './App';
+import { createServer, proxy } from 'aws-serverless-express';
+import { app } from './app';
 
-const port = process.env.PORT || '8080';
+const server = createServer(app);
 
-app.listen(port, () => {
-  console.log(`Server runs at http://localhost:${port}...`);
-});
+export const handler = (event, context, callback) =>
+  proxy(server, event, context);
+
+if (process.env.NODE_ENV !== 'production') {
+  const port = process.env.PORT || '8080';
+  app.listen(port, () => {
+    console.log(`Server runs at http://localhost:${port}...`);
+  });
+}
