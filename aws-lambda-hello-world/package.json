@@ -7,7 +7,8 @@
     "build": "tsc",
     "start": "npm run build && node dist/index.js",
     "dev": "nodemon -e ts --exec npm run build",
-    "package": "npm run build && zip -q -r lambda-package.zip node_modules/ dist/lambda.js dist/App.js"
+    "package":
+      "npm run build && zip -q -r lambda-package.zip node_modules/ dist/index.js dist/app.js"
   },
   "author": "",
   "license": "ISC",
