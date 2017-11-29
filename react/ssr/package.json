@@ -1,0 +1,26 @@
+{
+  "name": "ssr",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "tsc && node dist/index.js",
+    "dev": "nodemon -e ts --exec npm run start "
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/express": "^4.0.39",
+    "@types/react": "^16.0.25",
+    "@types/react-dom": "^16.0.3",
+    "express": "^4.16.2",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-materialize": "^1.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.1",
+    "typescript": "^2.6.2"
+  }
+}
