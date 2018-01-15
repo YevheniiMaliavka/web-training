@@ -1,0 +1,16 @@
+{
+  "editor.tabSize": 2,
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/dist": true
+  },
+  "explorer.openEditors.visible": 0,
+  "files.exclude": {
+    "**/.git": true
+  },
+  "files.trimTrailingWhitespace": true,
+  "tslint.autoFixOnSave": true,
+  "prettier.singleQuote": true
+}

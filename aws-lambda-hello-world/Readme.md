@@ -1,6 +1,6 @@
 # AWS JavaScript Lambda
 
-> This is just a simple guide about how to create a basic Node.js Lambda Deployment Package on the base of the existing Express.js App in TypeScript explained step by step. It's a very basic project and is created only for learning purposes. 
+> This is just a simple guide on how to create a basic Node.js Lambda Deployment Package on the base of the existing Express.js App in TypeScript explained step by step. It's a very basic project and is created only for learning purposes.
 
 # Intro
 We are going to do the following:
@@ -12,19 +12,32 @@ We are going to do the following:
 * Make sure you have [NPM](https://www.npmjs.com/) and [Node.js](https://nodejs.org/en/) installed.
 * You know what is a [Express Application](https://expressjs.com/).
 * You have a basic idea of what [AWS Lambda](https://aws.amazon.com/lambda/) and [AWS API Gateway](https://aws.amazon.com/api-gateway/) are.
-* You have an active [AWS Account](https://aws.amazon.com/free/) that allows you creating Lambdas and API Gateways. 
+* You have an active [AWS Account](https://aws.amazon.com/free/) that allows you creating Lambdas and API Gateways.
 
+## Quick Dive-In
+If you just want to get your hands directly into the code or just spin up a copy of this project, here are the steps:
+```sh
+    $ git clone git@github.com:YevheniiMaliavka/web-training.git
+    $ cd web-training/aws-lambda-hello-world
+    $ npm install && npm start dev
+```
+To get the Deployment Package:
+```sh
+    $ npm run package
+```
+
+# Step by step guide
 ## Step 1: Create an Express App
 ### 1. Create project structure:
 ```sh
     $ mkdir aws-lambda-hello-world && cd aws-lambda-hello-world
     $ npm init -y
-    $ mkdir src && touch .gitignore tsconfig.json src/App.js src/index.js
+    $ mkdir src && touch .gitignore tsconfig.json src/app.js src/index.js
 ```
 
 ### 2. Configure project:
 Make sure your **.gitignore** contains:
-``` 
+```
 dist
 node_modules
 *.zip
@@ -50,38 +63,31 @@ Update the `package.json` `scripts` property to contain the following commands:
 
 ### 3. Install necessary dependencies
 ```sh
-npm install --save express
-npm install --save-dev @types/express nodemon typescript
+npm install --save express @types/express
+npm install --save-dev  nodemon typescript
 ```
 
 ### 3.  Implement app
-`App.ts` contains the express application class, where our root route is defined, and exports an instance of the application.
+`app.ts` exports instance of an express app, where our root route is defined.
 ```javascript
 import * as express from 'express';
 
-class App {
-  express: express.Express;
+const app = express();
 
-  constructor() {
-    this.express = express();
-    this.initRoutes();
-  }
+const router = express.Router();
 
-  private initRoutes(): void {
-    const router = express.Router();
-    router.get('/', (req, res) => {
-      res.json('Hello, World! This is Express.js App!');
-    });
-    this.express.use('/', router);
-  }
-}
+router.get('/', (req, res) => {
+  res.json('Hello, World! This is Express.js App!');
+});
 
-export const app = new App().express;
+app.use('/', router);
+
+export { app };
 ```
 
 `index.ts` imports the app and starts it listening to `localhost:8080`:
 ```javascript
-import { app } from './App';
+import { app } from './app';
 
 const port = process.env.PORT || '8080';
 
@@ -105,33 +111,39 @@ So far, we've got our simple Express App that can be developed locally and is re
 ### 1. Install aws-serverless-express
 We will install [aws-serverless-express](https://github.com/awslabs/aws-serverless-express) that lets running your Node.js Express application on top of AWS Lambda.
 ```sh
-npm install --save aws-serverless-express
-npm install --save-dev @types/aws-serverless-express
+npm install --save aws-serverless-express @types/aws-serverless-express
 ```
 ### 2. Adopt Express App
-We'll create the `lambda.ts`file in the `src` directory, which imports created earlier application from './App.js'. We create a server that uses our app and proxy it with `aws-serverless-express` functions.
+We'll modify the `index.ts`file in the `src` directory in the way, that it exports the handler to process the AWS Lambda Events. We create a server that uses our app and proxy it with `aws-serverless-express` functions.
 The `handler` function is a function that will handle our lambda events, particulary the HTTP GET.
+
+If we are developing the app locally, in other words the environment is not production, we will start our express app listening to `localhost:8080`.
 
 ```javascript
 import { createServer, proxy } from 'aws-serverless-express';
-import { app } from './App';
+import { app } from './app';
 
 const server = createServer(app);
 
 export const handler = (event, context, callback) =>
   proxy(server, event, context);
 
+if (process.env.NODE_ENV !== 'production') {
+  const port = process.env.PORT || '8080';
+  app.listen(port, () => {
+    console.log(`Server runs at http://localhost:${port}...`);
+  });
+}
 ```
 
 ### 3. Create a Zip Deployment Package
 We'll add a new command to our `scripts` property in `package.json`.
 
 ```sh
-"package":"npm run build && zip -q -r lambda-package.zip node_modules/ dist/lambda.js dist/App.js"
+"package": "npm run build && zip -q -r lambda-package.zip node_modules/ dist/index.js dist/app.js"
 ```
 
-This command will build the project and make a zip out of the `node_modules/`, `dist/lambda.js` and `dist/App.js`.
-> Note: we don't need `index.js` as this just starts a local server using our Express App and is only for the local development.
+This command will build the project and make a zip out of the `node_modules/`, `dist/index.js` and `dist/app.js`.
 
 Now, just enter `npm run package` to the terminal which would generate a `lambda-package.zip` in the project root ready to be deployed.
 
