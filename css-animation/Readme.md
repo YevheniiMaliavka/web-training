@@ -138,5 +138,82 @@ We use some javascript code that adds an event listener to our DOM element. When
 })
 ```
 
+## Animation Property & Keyframes
+Animation property and keyframes are coupled.
 
+### Keyframes 
+* define what is happening, how the style is changing
+* is like "what the animation does"
+* do not have selectors
+* are in the root of the css
+* are not nested inside of anything
 
+#### Syntax
+```css
+@keyframes [name]{
+    from{
+        [styles];
+    }
+    to{
+        [styles];
+    }
+}
+```
+
+The animation happens independently of the current state unlike the transition where the animation happens only if some properties change.
+
+Moreover, we can define more "key frames" or "steps" of our animation by specifying procentual values instead of `from` and `to` keywords.
+
+```css
+@keyframes [name]{
+    0%{
+        [styles];
+    }
+    10%{
+        [styles]; 
+    }
+    ...
+    100%{
+        [styles];
+    }
+}
+```
+
+### Animation
+* define how the animation is happening
+* is like "how the animation" is done
+* is inside of a selector
+
+#### Syntax
+```css
+.element{
+    animation: [name] [duration] [timing-function] [delay] [iteration-count] [direction] [fill-mode] [play-state];
+}
+```
+
+### Triggering
+The best way to trigger animation is to move the `animation` property to a separate CSS class and toggle it when required using JavaScript.
+
+```javascript
+const box = document.querySelector('.box');
+box.addEventListener('click', (e) => {
+    box.classList.toggle('box-animation');
+});
+```
+
+```css
+.box{
+    height: 100%;
+    width: 100%;
+    background-color: violet;
+}
+
+.box-animation{
+    animation-name: box-animation;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+}
+``` 
+> The animation properties are specified explicitly here, however this can be shorthanded and written in one line.

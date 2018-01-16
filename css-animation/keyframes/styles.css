@@ -1,0 +1,59 @@
+body{
+    padding: 50px;
+}
+
+@keyframes box-animation{
+    0% {
+        border-radius: 50%;
+    }
+    50%, 100%{
+        transform: rotate(45deg);
+    }
+
+    100% {
+        border-radius: 0%;
+        background-color:crimson;
+    }
+}
+
+@keyframes in-box-animation{
+    from {
+        border-radius: 0%;
+    }
+    to{
+        border-radius: 50%;
+    }
+}
+
+.box-container{
+    height: 100px;
+    width: 100px;
+    position: relative;
+}
+
+.box{
+    height: 100%;
+    width: 100%;
+    background-color: violet;
+}
+
+.in-box{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: firebrick;
+    top: 0;
+    left: 0;
+}
+
+.box-animation{
+    animation-name: box-animation;
+    animation-duration: 1s;
+    animation-timing-function: ease-in-out;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+}
+
+.in-box-animation{
+    animation: in-box-animation 1s ease-in-out 0s infinite alternate;
+}
