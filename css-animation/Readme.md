@@ -217,3 +217,44 @@ box.addEventListener('click', (e) => {
 }
 ``` 
 > The animation properties are specified explicitly here, however this can be shorthanded and written in one line.
+
+## Using Animations in UX
+Why should we animate certain things and should not other?
+There are several principles.
+Animation is all about the motion of changing from one state into another and helping the user to understand what has happend and where is he or she now.
+
+### Orientation
+`Where am I now?`
+
+You travel to something new as a response you did something. This animation should show where you are now in a relation where you were before.
+
+When a user comes to a new user-experience a.k.a. view, he must be sure where he is right now in comparison where he was before.
+
+### Functional change
+`What does the element do now?`
+
+Example: a toggle switch, like a mute of a volume button.
+It shows the changing of the state. 
+
+### New element
+`What should I look at?`
+
+What was added, what was changed and why? Try to help the user understand that there is something new on the page and why it is there. Also it shows its relation to the existing context.
+
+### Highlight
+`What is important here?`
+
+It helps to draw the attention in a crowded/busy/noisy page.
+
+### Visual Feedback
+`Is the layout understanding what I am asking it to do?`
+
+Ensures that the system and layout understands the user input and what he or she tries to do. If the animation represents the idea with motion, it makes the user feel sure they do the right thing.
+
+### System Status
+`Is this working? How long will it take?`
+
+For example, a progress bar.
+We need to tell the user that some process (say, on backend), is running and user should be informed how long it will last. 
+
+ 
