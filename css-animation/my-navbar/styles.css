@@ -1,0 +1,80 @@
+body{
+    background: whitesmoke;
+}
+
+nav{
+    padding: 50px;
+    text-align: center;
+}
+
+nav > ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+    border-radius: 5px;
+    background: red;
+}
+
+nav > ul > li{
+    float: left;
+    width: 150px;
+    height: 65px;
+    line-height: 65px;
+    position: relative;
+    font-size: 14px;
+    cursor: pointer;
+    text-transform: uppercase;
+    color: white;
+}
+
+nav > ul > li:hover{
+    background: green;
+    border-radius: 5px;
+}
+
+ul.dropdown-menu{
+    position: absolute;
+    top: 100%;
+    left: 0%;
+    width: 100%;
+    padding: 0;
+}
+
+ul.dropdown-menu li{
+    background: gray;
+    color: white;
+}
+
+ul.dropdown-menu li:hover{
+    background: lightslategray;
+    border-radius: 5px;
+}
+
+ul.dropdown-menu li:last-child{
+    border-radius: 0px 0px 5px 5px;
+}
+
+ul.dropdown-menu li{
+    display: none;
+}
+
+li:hover > ul.dropdown-menu li{
+    display: block;
+}
+
+@keyframes menu1{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+li:hover > ul.dropdown-menu.menu1 li{
+    animation-name: menu1;
+    animation-duration: 1500ms;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+}
