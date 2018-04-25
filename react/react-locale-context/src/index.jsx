@@ -5,7 +5,7 @@ import { withLocale } from "./components/Locale";
 
 class App extends React.Component {
   render() {
-    const { translations } = this.props.locale.translations;
+    const { translations } = this.props.locale;
     return (
       <div>
         <div>{translations.headline}!</div>
@@ -19,4 +19,4 @@ const rootNode = document.getElementById("app");
 
 const LocalizedApp = withLocale(App);
 
-render(<LocalizedApp />, rootNode);
+render(<LocalizedApp/>, rootNode);

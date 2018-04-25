@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import React, { createContext } from "react";
 
 const translations = {
   en: {
@@ -22,6 +22,6 @@ export const LocaleProvider = LocaleContext.Provider;
 
 export const LocaleConsumer = LocaleContext.Consumer;
 
-export const withLocale = component => (
-  <LocaleProvider>{locale => <component locale={locale} />}</LocaleProvider>
+export const withLocale = Component => (props) => (
+  <LocaleConsumer>{locale => <Component {...props} locale={locale} />}</LocaleConsumer>
 );
