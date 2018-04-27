@@ -9,4 +9,6 @@ const translations = {
   }
 };
 
+export const defaultLocale = "en";
+
 export const getTranslations = locale => translations[locale];
