@@ -1,5 +1,6 @@
 const { join } = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { op } = require("webpack");
 
 module.exports = {
   entry: {
@@ -9,6 +10,11 @@ module.exports = {
   output: {
     path: join(__dirname, "dist"),
     filename: "[name].bundle.js"
+  },
+  optimization: {
+    splitChunks: {
+      chunks: "all"
+    }
   },
   plugins: [
     new HtmlWebpackPlugin({
