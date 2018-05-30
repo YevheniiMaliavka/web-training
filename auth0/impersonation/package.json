@@ -1,0 +1,11 @@
+{
+  "name": "impersonation",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "auth0": "^2.9.1",
+    "node-fetch": "^2.1.2",
+    "request": "^2.87.0"
+  }
+}
