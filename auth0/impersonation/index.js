@@ -15,9 +15,15 @@ const globalSecret = process.env.GLOBAL_SECRET;
 const impersonatorId = process.env.IMPERSONATOR;
 
 if (
-  [userEmail, appId, appSecret, appDomain, globalId, globalSecret, impersonatorId].some(
-    variable => variable === undefined
-  )
+  [
+    userEmail,
+    appId,
+    appSecret,
+    appDomain,
+    globalId,
+    globalSecret,
+    impersonatorId
+  ].some(variable => variable === undefined)
 ) {
   throw new Error("Environment variables are not set properly!");
 }
@@ -28,7 +34,6 @@ const manager = new ManagementClient({
   domain: appDomain
 });
 
-let ACCESS_TOKEN = null;
 
 async function getAccessToken() {
   const users = await manager.getUsersByEmail(userEmail);
@@ -55,7 +60,7 @@ async function getAccessToken() {
   }
 
   const { access_token } = await response.json();
-  console.log("Access token for impersonation API retrieved.");
+
   return { access_token, user_id };
 }
 
@@ -91,9 +96,7 @@ function startServer(port) {
         res.write(access_token);
         return res.end();
       }
-
       const { access_token, user_id } = await getAccessToken();
-
       const impersonationCodeUrl = await requestImpersonationCode(
         access_token,
         user_id
@@ -123,7 +126,7 @@ async function requestImpersonationTokens(code) {
     body: JSON.stringify({
       client_id: appId,
       client_secret: appSecret,
-      grant_type: 'authorization_code',
+      grant_type: "authorization_code",
       redirect_uri: `http://localhost:${PORT}`,
       code
     })
@@ -136,10 +139,4 @@ async function requestImpersonationTokens(code) {
   return await response.json();
 }
 
-(async function() {
-  try {
-    const server = await startServer(PORT);
-  } catch (err) {
-    console.log(`${err}`);
-  }
-})();
+startServer(PORT);
