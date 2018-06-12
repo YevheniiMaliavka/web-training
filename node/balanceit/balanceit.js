@@ -21,7 +21,7 @@ function isBalanced(charsString) {
     const currentChar = charsString.charAt(position);
 
     if (hasProccessedWholeString(position)) {
-      return anyUnbalancedCharLeft() ? false : true;
+      return !anyUnbalancedCharLeft();
     }
 
     closesPreviousChar(currentChar)
