@@ -1,61 +1,40 @@
+const assert = require('assert');
+
 function isBalanced(charsString) {
-  const openingChars = [];
+  const unbalancedChars = [];
+  const monogamousAndHeterosexual = new Map([
+    ['{', '}'],
+    ['(', ')'],
+    ['[', ']']
+  ]);
 
-  function getLastChar() {
-    return openingChars[openingChars.length - 1];
-  }
+  const popUnbalancedChar = () => unbalancedChars[unbalancedChars.length - 1];
+  const isOpeningChar = char => openingChars.includes(char);
+  const isClosingChar = char => closingChars.includes(char);
+  const hasProccessedWholeString = position => position >= charsString.length;
+  const anyUnbalancedCharLeft = () => !!unbalancedChars.length;
 
-  const closing = ['}', ')', ']'];
-  const opening = ['{', '(', '['];
+  const closesPreviousChar = char =>
+    char === monogamousAndHeterosexual.get(popUnbalancedChar());
 
-  const isOpeningChar = char => opening.includes(char);
-  const isClosingChar = char => closing.includes(char);
-
-  const closesPrevious = char => {
-    const lastChar = getLastChar();
-    if (char === ')') {
-      return lastChar === '(';
-    }
-    if (char === ']') {
-      return lastChar === '[';
-    }
-    if (char === '}') {
-      return lastChar === '{';
-    }
-    return false;
-  };
-
-  function balance(position) {
-    if (position >= charsString.length) {
-      if (openingChars.length === 0) {
-        return true;
-      }
-      return false;
-    }
-
+  return (function processCharAt(position) {
     const currentChar = charsString.charAt(position);
 
-    if (openingChars.length === 0) {
-      if (isClosingChar(currentChar)) {
-        return false;
-      }
-      openingChars.push(currentChar);
-      return balance(position + 1);
+    if (hasProccessedWholeString(position)) {
+      return anyUnbalancedCharLeft() ? false : true;
     }
 
-    if (isClosingChar(currentChar) && closesPrevious(currentChar)) {
-      openingChars.pop();
-      return balance(position + 1);
-    }
-    openingChars.push(currentChar);
-    return balance(position + 1);
-  }
-  return balance(0);
+    closesPreviousChar(currentChar)
+      ? unbalancedChars.pop()
+      : unbalancedChars.push(currentChar);
+
+    return processCharAt(position + 1);
+  })(0);
 }
 
-console.log('1.', isBalanced('()[]{}') === true);
-console.log('2.', isBalanced('()]{}') === false);
-console.log('3.', isBalanced('[()]{}') === true);
-console.log('4.', isBalanced('()[]({[((()))]})') === true);
-console.log('5.', isBalanced('()[]({[((()]))]})') === false);
-console.log('6.', isBalanced('()[]({[((())]})') === false);
+assert(isBalanced('()[]{}') === true, '()[]{}');
+assert(isBalanced('()]{}') === false, '()]{}');
+assert(isBalanced('[()]{}') === true, '[()]{}');
+assert(isBalanced('()[]({[((()))]})') === true, '()[]({[((()))]})');
+assert(isBalanced('()[]([((()))]})') === false, '()[]([((()))]})');
+assert(isBalanced('()[]({[((())]})') === false, '()[]({[((())]})');
