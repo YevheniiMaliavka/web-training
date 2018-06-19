@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        Interpolate
+        <%= title %>
+    </title>
+    <link rel="icon" type="image/png" href="<%= icon %>" />
+</head>
+
+<body>
+    <p1>Evaluate some facts: </p1>
+    <ul>
+        <% _.forEach(facts, function(fact) { %>
+            <li>
+                <%- fact %>
+            </li>
+            <% }); %>
+    </ul>
+</body>
+
+</html>
