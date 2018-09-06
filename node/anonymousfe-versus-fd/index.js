@@ -52,15 +52,25 @@ proveIt(); // undefined...WTF? I thought it would be 20. Really?
 // THIS IS AN EXAMPLE FROM MDN
 // https://developer.mozilla.org/de/docs/Web/JavaScript/Reference/Operators/this
 ///////////////////////////// START
-var a = 'Global';
-
-function whatsThis() {
-  return this.a; // Der Wert von this hängt davon ab, wie die Funktion aufgerufen wird.
-}
-
-whatsThis(); // 'Global'
 
 ////////////////////////////// END
 // WAAAAAAAAAT
 // and it logs undefined as well. 
 // My world is destroyed, I should leave now... :()
+
+// Ein Objekt kann als erstes Argument beim Aufruf von call oder apply benutzt werden
+// welches an den Aufruf gebunden wird.
+// Ein Objekt kann als erstes Argument beim Aufruf von call oder apply benutzt werden
+// welches an den Aufruf gebunden wird.
+var obj = {a: 'Custom'};
+
+// Dieses Objekt wird auf dem globalen Objekt definiert
+var a = 'Global';
+
+function whatsThis() {
+  console.log(this.a); // Der Wert von this hängt davon ab, wie die Funktion aufgerufen wird.
+}
+
+whatsThis();          // 'Global'
+whatsThis.call(obj);  // 'Custom'
+whatsThis.apply(obj); // 'Custom'
