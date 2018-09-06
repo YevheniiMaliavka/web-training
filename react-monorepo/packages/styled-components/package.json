@@ -1,0 +1,22 @@
+{
+  "name": "styled-components",
+  "version": "1.0.0",
+  "main": "dist/index.bundle.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "webpack-cli"
+  },
+  "devDependencies": {
+    "awesome-typescript-loader": "^5.2.0",
+    "typescript": "^3.0.3",
+    "webpack": "^4.17.2",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.7"
+  },
+  "dependencies": {
+    "@types/react": "^16.4.13",
+    "@types/react-dom": "^16.0.7",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2"
+  }
+}
