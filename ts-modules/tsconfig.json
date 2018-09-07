@@ -1,0 +1,9 @@
+{
+    "compilerOptions": {
+        "module": "UMD",
+        "outDir": "dist"
+    },
+    "include":[
+        "src/*"
+    ]
+}

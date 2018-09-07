@@ -1,0 +1,1 @@
+export const stroke = `foo ${Math.random() * 10 < 5 ? 'foo is cool' : 'foo is noob'}`;

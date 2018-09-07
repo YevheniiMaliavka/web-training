@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "noImplicitAny": true,
+    "jsx": "react",
+    "declaration": true,
+    "declarationDir": "dist",
+  },
+  "exclude": ["node_modules", "dist"]
+}
