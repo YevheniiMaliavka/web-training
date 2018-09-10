@@ -4,6 +4,7 @@
     "jsx": "react",
     "declaration": true,
     "declarationDir": "dist",
+    "plugins": [{ "name": "typescript-styled-plugin" }]
   },
   "exclude": ["node_modules", "dist"]
 }
