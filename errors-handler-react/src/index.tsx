@@ -5,7 +5,7 @@ class UnstableComponent extends React.Component {
   state = { data: 'Empty' };
 
   async componentDidMount() {
-    throw new Error('Woah, something happened!');
+    throw 'FOO';
     const response = await fetch(
       'https://jsonplaceholder.typicode.com/todos/1'
     );
@@ -18,19 +18,30 @@ class UnstableComponent extends React.Component {
   }
 }
 
-class ErrorBoundary extends React.Component {
-  state = { error: false };
+class ErrorBoundary extends React.Component<{
+  children: () => Promise<JSX.Element>;
+}> {
+  state = { error: false, safeChildren: null };
 
   componentDidCatch() {
     console.log('Did catch!');
     this.setState({ error: true });
   }
 
+  async componentDidMount() {
+    try {
+      const children = await this.props.children();
+      this.setState({ safeChildren: children });
+    } catch (err) {
+      console.log('Catched it!');
+    }
+  }
+
   render() {
     if (this.state.error) {
       return <h1>Error has occured. But Houston is ok :)</h1>;
     }
-    return this.props.children;
+    return this.state.safeChildren || 'Waiting...';
   }
 }
 
@@ -38,8 +49,12 @@ const App = () => (
   <>
     <h1>My App</h1>
     <ErrorBoundary>
-      <h2>This area is safe. Errors are caught.</h2>
-      <UnstableComponent />
+      {async () => (
+        <>
+          <h2>This area is safe. Errors are caught.</h2>
+          <UnstableComponent />
+        </>
+      )}
     </ErrorBoundary>
   </>
 );

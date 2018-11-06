@@ -1,0 +1,13 @@
+{
+  "name": "cucumber",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "test": "cucumber-js"
+  },
+  "devDependencies": {
+    "@types/cucumber": "^4.0.4",
+    "cucumber": "^5.0.2"
+  }
+}
